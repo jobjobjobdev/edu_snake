@@ -159,6 +159,7 @@ class _GamePageState extends State<GamePage> {
   Widget build(BuildContext context) {
     final double boardSize = 200;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.black,
       body: KeyboardListener(
         focusNode: _focusNode,
@@ -172,25 +173,30 @@ class _GamePageState extends State<GamePage> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    TextButton(
-                      onPressed: () {
-                        restartGame();
-                      },
-                      child: const Text('Restart'),
-                    ),
+                    // TextButton(
+                    //   onPressed: () {
+                    //     restartGame();
+                    //   },
+                    //   child: const Text('Restart'),
+                    // ),
                   ],
                 ),
               ),
-              LevelBar(score: snakePositions.length - 3),
               Expanded(
-                flex: 3,
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [PlantImage(points: snakePositions.length - 3)],
-                  ),
+                child: LevelFact(
+                  score: snakePositions.length - 3,
+                  onReset: restartGame,
                 ),
               ),
+              // Expanded(
+              //   flex: 3,
+              //   child: Center(
+              //     child: Column(
+              //       mainAxisSize: MainAxisSize.min,
+              //       children: [PlantImage(points: snakePositions.length - 3)],
+              //     ),
+              //   ),
+              // ),
 
               //
               Column(
